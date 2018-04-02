@@ -1,0 +1,6 @@
+<form name="addTaskForm">
+    <input type="text" placeholder="Description" ng-model="task.name" required length-validator />
+    <span ng-show="!addTaskForm.newTaskName.$valid" class="text-danger">*</span>
+    <input type="hidden" value="" ng-model="task.id" />
+    <button ng-click="editTask(task)" ng-disabled="addTaskForm.$invalid">Edit</button>
+</form>

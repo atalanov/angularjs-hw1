@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div ng-app="todoApp">
+        <div ng-controller="todoController">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <h3>Active ({{getTasks(false).length}})</h3>
+                        <span ng-if="tasks.length === 0">You have no active tasks!</span>
+                        <ul ng-repeat="task in tasks | filter: {isDone:false} | orderBy:'-creationDate'">
+                            <li>
+                                <input type="checkbox" ng-click="finishTask(task.id)" /> <a href="#!/admin/article/{{task.id}}/edit">{{ task.name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <h3>Finished ({{getTasks(true).length}})</h3>
+                        <span ng-if="tasks.length === 0">You have no finished tasks!</span>
+                        <ul ng-repeat="task in tasks | filter: {isDone:true} | orderBy:'-creationDate'">
+                            <li>
+                                {{ task.name }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <h2>Add task</h2>
+                <a href="#!/admin/article/add">Add</a>
+                <div ng-view></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
